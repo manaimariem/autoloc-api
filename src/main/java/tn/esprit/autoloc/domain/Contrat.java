@@ -3,6 +3,8 @@ package tn.esprit.autoloc.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Getter
@@ -16,6 +18,22 @@ public class Contrat {
     private Long idContrat;
 
     private LocalDate dateSignature;
+
     private Double montantTotal;
+
     private Boolean valide;
+
+    // Un contrat peut avoir plusieurs paiements
+    @OneToMany(
+            mappedBy = "contrat",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    private List<Paiement> paiements = new ArrayList<>();
+
+    // Chaque contrat est associé à une réservation
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_reservation")
+    private Reservation reservation;
 }
