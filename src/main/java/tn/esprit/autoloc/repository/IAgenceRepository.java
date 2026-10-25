@@ -3,8 +3,8 @@ package tn.esprit.autoloc.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import tn.esprit.autoloc.domain.Maintenance;
+import tn.esprit.autoloc.domain.Agence;
 
 @Repository
-public interface MaintenanceRepository extends JpaRepository<Maintenance, Long> {
+public interface IAgenceRepository extends JpaRepository<Agence, Long> {
 }
